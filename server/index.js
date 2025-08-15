@@ -9,8 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 const razorpay = new Razorpay({
-  key_id: rzp_live_KbNeSNLqfHTzAB,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
+  key_id: 'rzp_live_KbNeSNLqfHTzAB',
+  key_secret: 'uw3CHx4hjuk7TevyBQ7qLgi0',
 });
 
 app.post("/api/create-order", async (req, res) => {
@@ -37,7 +37,7 @@ app.post("/api/verify-payment", (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
     const generated_signature = crypto
-      .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+      .createHmac("sha256", 'uw3CHx4hjuk7TevyBQ7qLgi0')
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
       .digest("hex");
 
